@@ -14,6 +14,8 @@ def evaluate_Asteriod():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
     #inputValue = data.get("input")
+    for test_case in data:
+        text=Convert(test_case)
     logging.info("input :{}".format(sentence))
     logging.info("score :{}".format(mark))
     logging.info("origin :{}".format(origin_position))
@@ -41,7 +43,7 @@ def split_by_unique_groups(list_):
             break
         idx = next_bad_idx
     return to_return
-sentence_split = split_by_unique_groups(data)
+sentence_split = split_by_unique_groups(text)
 
 
 #test
@@ -71,7 +73,7 @@ elif index>=7:
 else:
     mark+=index
 
-sentence_copy=split_by_unique_groups(data)
+sentence_copy=split_by_unique_groups(text)
 
 origin_position=int(len(sentence_copy)/2)
 numberOfOrigin=0
