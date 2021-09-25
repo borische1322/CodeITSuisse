@@ -18,7 +18,7 @@ def evaluate_Asteriod():
     #inputValue = data.get("input")
     result=[]
     for test_case in data:
-        result.append(main(text))
+        result.append(main(test_case))
     logging.info("input :{}".format(text))
     logging.info("score :{}".format(mark))
     logging.info("origin :{}".format(origin_position))
