@@ -11,8 +11,8 @@ again1=1
 again2=1
 
 logger = logging.getLogger(__name__)
-@app.route('/asteroid', methods=['POST'])
-def evaluate_asteroid():
+@app.route('/parasite', methods=['POST'])
+def evaluate_parasite():
     global text
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
