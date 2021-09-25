@@ -15,7 +15,8 @@ def evaluate_Asteriod():
     logging.info("data sent for evaluation {}".format(data))
     #inputValue = data.get("input")
     for test_case in data:
-        sentence=Convert(test_case)
+        text=Convert(test_case)
+    main(text)
     logging.info("input :{}".format(sentence))
     logging.info("score :{}".format(mark))
     logging.info("origin :{}".format(origin_position))
@@ -43,43 +44,49 @@ def split_by_unique_groups(list_):
             break
         idx = next_bad_idx
     return to_return
-sentence_split = split_by_unique_groups(sentence)
+def main(sentence):
+    global sentence
+    global mark
+    global origin_position
+    global inputValue
+    global data
+    sentence_split = split_by_unique_groups(sentence)
 
 
-#test
-while len(sentence_split)>1:
-    origin=int(len(sentence_split)/2)
-    global index
-    index=len(sentence_split[origin])
-    if sentence_split[origin-1][0]==sentence_split[origin+1][0]:
-        if (len(sentence_split[origin-1])+len(sentence_split[origin+1]))>=10:
-            mark+=2*(len(sentence_split[origin-1])+len(sentence_split[origin+1]))
-            
-        elif (len(sentence_split[origin-1])+len(sentence_split[origin+1]))>=7:
-            mark+=1.5*(len(sentence_split[origin-1])+len(sentence_split[origin+1]))
+    #test
+    while len(sentence_split)>1:
+        origin=int(len(sentence_split)/2)
+        global index
+        index=len(sentence_split[origin])
+        if sentence_split[origin-1][0]==sentence_split[origin+1][0]:
+            if (len(sentence_split[origin-1])+len(sentence_split[origin+1]))>=10:
+                mark+=2*(len(sentence_split[origin-1])+len(sentence_split[origin+1]))
+
+            elif (len(sentence_split[origin-1])+len(sentence_split[origin+1]))>=7:
+                mark+=1.5*(len(sentence_split[origin-1])+len(sentence_split[origin+1]))
+
+            else:
+                mark+=(len(sentence_split[origin-1])+len(sentence_split[origin+1]))
+
+            sentence_split.pop(origin-1)
+            sentence_split.pop(origin)
 
         else:
-            mark+=(len(sentence_split[origin-1])+len(sentence_split[origin+1]))
-
-        sentence_split.pop(origin-1)
-        sentence_split.pop(origin)
-        
+            break
+    if index>=10:
+        mark+=2*index
+    elif index>=7:
+        mark+=1.5*index
     else:
-        break
-if index>=10:
-    mark+=2*index
-elif index>=7:
-    mark+=1.5*index
-else:
-    mark+=index
+        mark+=index
 
-sentence_copy=split_by_unique_groups(sentence)
+    sentence_copy=split_by_unique_groups(sentence)
 
-origin_position=int(len(sentence_copy)/2)
-numberOfOrigin=0
-i=0
-while i < origin_position:
-    numberOfOrigin+=len(sentence_copy[i])
-    i+=1
-numberOfOrigin+=int(len(sentence_copy)/2)-1
+    origin_position=int(len(sentence_copy)/2)
+    numberOfOrigin=0
+    i=0
+    while i < origin_position:
+        numberOfOrigin+=len(sentence_copy[i])
+        i+=1
+    numberOfOrigin+=int(len(sentence_copy)/2)-1
 
