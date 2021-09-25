@@ -76,8 +76,8 @@ def make_stepForP2(m):
                     again1+=1
                   
 def isolatedForp2(m):
-    for i in range(len(m)):
-        for j in range(len(m)):
+    for i in range(len(m))-1:
+        for j in range(len(m))-1:
             if m[i][j]==1:
                 if i==0 and j==0:
                     if m[i][j+1]==0 and m[i+1][j]==0:
