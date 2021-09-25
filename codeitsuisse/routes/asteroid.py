@@ -92,4 +92,4 @@ def main(sentence):
         i+=1
     numberOfOrigin+=int(len(sentence_copy)/2)-1
 
-    return {"input" : test_case,"score" : mark, "origin" : origin_position}
+    return {"input" : sentence,"score" : mark, "origin" : origin_position}
