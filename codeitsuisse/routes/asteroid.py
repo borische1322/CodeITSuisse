@@ -14,6 +14,7 @@ def evaluate_Asteriod():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
     #inputValue = data.get("input")
+    result=[]
     for test_case in data:
         result.append(main(text))
     logging.info("input :{}".format(text))
