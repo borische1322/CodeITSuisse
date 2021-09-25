@@ -248,7 +248,7 @@ def make_stepForP1(m):
                     again1+=1 
                     
 def main(inputRoom,inputGrid,inputTarget):
-    p1_ans=p1test(inputGrid, inputTarget)
+    p1_ans=p1(inputGrid, inputTarget)
     p2_ans=p2(inputGrid)
     p3_ans=-1
     p4_ans=1
