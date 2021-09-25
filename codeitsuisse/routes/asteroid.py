@@ -12,7 +12,7 @@ def evaluate_Asteriod():
     global inputValue
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
-    inputValue = data.get("input")
+    #inputValue = data.get("input")
     logging.info("input :{}".format(sentence))
     logging.info("score :{}".format(mark))
     logging.info("origin :{}".format(origin_position))
