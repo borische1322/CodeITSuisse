@@ -77,7 +77,7 @@ def make_stepForP2(m):
                   
 def isolatedForp2(m):
     for i in range(len(m)-1):
-        for j in range(len(m)-1):
+        for j in range(len(m[i])-1):
             if m[i][j]==1:
                 if i==0 and j==0:
                     if m[i][j+1]==0 and m[i+1][j]==0:
@@ -144,7 +144,7 @@ def solve(m,x,y,p1_x,p1_y):
     if x == p1_x and y == p1_y :
         return True
 
-    if  m[x][y] != "1" and test != 0:
+    if  m[x][y] != 1 and test != 0:
         p1_value -= 1
         return False
     test+=1
