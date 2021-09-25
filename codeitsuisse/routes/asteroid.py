@@ -15,12 +15,11 @@ def evaluate_Asteriod():
     logging.info("data sent for evaluation {}".format(data))
     #inputValue = data.get("input")
     for test_case in data:
-        text=test_case
-    main(text)
+        result.append(main(text))
     logging.info("input :{}".format(text))
     logging.info("score :{}".format(mark))
     logging.info("origin :{}".format(origin_position))
-    return json.dumps({"input" : text,"score" : mark, "origin" : origin_position})
+    return json.dumps(result)
 
 mark=0
 #split the sentence
@@ -89,3 +88,4 @@ def main(sentence):
         i+=1
     numberOfOrigin+=int(len(sentence_copy)/2)-1
 
+return {"input" : text,"score" : mark, "origin" : origin_position}
