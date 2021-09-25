@@ -166,8 +166,89 @@ def solve(m,x,y,p1_x,p1_y):
     #Backtracking
     return False
 
+
+def p1test(grid,inputTarget):
+    global p1ANS
+    global again1
+    p1target=target()
+    p1ANS=[]
+    for i in p1target:
+        steps=0
+        if isolatedForp1(grid,int(i[0]),int(i[1]))==True:
+            print(-1)
+        else:
+            while noHealth()==False and again1>0:
+                if grid[int(i[0])][int(i[1])]!=3:
+                    make_stepForP2(grid)
+                    steps+=1
+                    again1-=1
+                else:
+                    break
+        p1ANS.append(steps)
+    p1_finalAns=dict(zip(inputTarget,p1ANS))
+    return p1_finalAnsdef p1test(grid,inputTarget):
+    global p1ANS
+    global again1
+    p1target=target()
+    p1ANS=[]
+    for i in p1target:
+        steps=0
+        if isolatedForp1(grid,int(i[0]),int(i[1]))==True:
+            print(-1)
+        else:
+            while noHealth()==False and again1>0:
+                if grid[int(i[0])][int(i[1])]!=3:
+                    make_stepForP2(grid)
+                    steps+=1
+                    again1-=1
+                else:
+                    break
+        p1ANS.append(steps)
+    p1_finalAns=dict(zip(inputTarget,p1ANS))
+    return p1_finalAns
+
+
+def isolatedForp1(m,i,j):
+    if m[i][j]==1:
+        if i==0 and j==0:
+            if m[i][j+1]==0 and m[i+1][j]==0:
+                return True
+        elif i==len(m)-1 and j==0:
+            if m[i][j+1]==0 and m[i-1][j]==0:
+                return True
+        elif i==0 and j==len(m[i])-1:
+            if m[i][j-1]==0 and m[i+1][j]==0:
+                return True
+        elif i==len(m)-1 and j==len(m[i])-1:
+            return True
+        else:
+            if (m[i-1][j] ==0 and i>0) and (m[i][j-1]==0 and j>0) and (m[i+1][j]==0 and i<len(m[1])-1) and (m[i][j+1]==0 and j<len(m[1])-1) :
+                return True
+    elif m[i][j]==0:
+        return True
+    else:
+        return False 
+
+def make_stepForP1(m):
+    global again1
+    for i in range(len(m)):
+        for j in range(len(m[i])):
+            if m[i][j] == 3:
+                if i>0 and m[i-1][j] == 1:
+                    m[i-1][j] = 3
+                    again1+=1
+                if j>0 and m[i][j-1] == 1 :
+                    m[i][j-1] = 3
+                    again1+=1
+                if i<len(m)-1 and m[i+1][j] == 1 :
+                    m[i+1][j] = 3
+                    again1+=1
+                if j<len(m[i])-1 and m[i][j+1] == 1 :
+                    m[i][j+1] = 3
+                    again1+=1 
+                    
 def main(inputRoom,inputGrid,inputTarget):
-    p1_ans=p1(inputGrid, inputTarget)
+    p1_ans=p1test(inputGrid, inputTarget)
     p2_ans=p2(inputGrid)
     p3_ans=-1
     p4_ans=1
