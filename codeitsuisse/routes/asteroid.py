@@ -20,7 +20,7 @@ def evaluate_Asteriod():
     logging.info("input :{}".format(text))
     logging.info("score :{}".format(mark))
     logging.info("origin :{}".format(origin_position))
-    return json.dumps({"input" : sentence,"score" : mark, "origin" : origin_position})
+    return json.dumps({"input" : text,"score" : mark, "origin" : origin_position})
 
 mark=0
 #split the sentence
