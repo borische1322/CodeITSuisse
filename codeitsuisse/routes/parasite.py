@@ -49,7 +49,7 @@ def noHealth(inputGrid):
     j=0
     while i<len(inputGrid):
         while j<len(inputGrid[i]):
-            if inputGgrid[i][j]==1:
+            if inputGrid[i][j]==1:
                 return False
             else:
                 j+=1
