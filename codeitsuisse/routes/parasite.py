@@ -44,12 +44,12 @@ def locationParasite(x):
                 parasite.append(j)
     return parasite
   
-def noHealth():
+def noHealth(inputGrid):
     i=0
     j=0
-    while i<len(grid):
-        while j<len(grid[i]):
-            if grid[i][j]==1:
+    while i<len(inputGrid):
+        while j<len(inputGrid[i]):
+            if inputGgrid[i][j]==1:
                 return False
             else:
                 j+=1
@@ -101,7 +101,7 @@ def p2(grid):
     if isolatedForp2(grid)==True:
         p2Ans=-1
     else:
-        while noHealth()==False and again1>0:
+        while noHealth(grid)==False and again1>0:
             make_stepForP2(grid)
             p2Ans+=1
             again1-=1
