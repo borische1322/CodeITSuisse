@@ -17,7 +17,7 @@ def evaluate_Asteriod():
     for test_case in data:
         text=test_case
     main(text)
-    logging.info("input :{}".format(sentence))
+    logging.info("input :{}".format(text))
     logging.info("score :{}".format(mark))
     logging.info("origin :{}".format(origin_position))
     return json.dumps({"input" : sentence,"score" : mark, "origin" : origin_position})
