@@ -130,7 +130,7 @@ def p1(inputGrid, inputTarget):
     p1_finalAns=dict(zip(inputTarget,p1_ans))
     return p1_afinalAns
 
- def solve(m,x,y,p1_x,p1_y):
+def solve(m,x,y,p1_x,p1_y):
     global p1_value
     global test
     #print(p1_value)
