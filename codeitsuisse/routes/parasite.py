@@ -19,7 +19,7 @@ def evaluate_parasite():
     #inputValue = data.get("input")
     result = []
    
-    for test_cases in data:
+    for test_case in data:
         result.append(main(test_case["room"],test_case["grid"],test_case["interestedIndividuals"]))
        
     return json.dumps(result)
