@@ -40,7 +40,7 @@ def split_by_unique_groups(list_):
             break
         idx = next_bad_idx
     return to_return
-sentence_split = split_by_unique_groups(inputValue)
+sentence_split = split_by_unique_groups(data)
 
 
 #test
@@ -70,7 +70,7 @@ elif index>=7:
 else:
     mark+=index
 
-sentence_copy=split_by_unique_groups(inputValue)
+sentence_copy=split_by_unique_groups(data)
 
 origin_position=int(len(sentence_copy)/2)
 numberOfOrigin=0
