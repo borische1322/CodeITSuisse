@@ -130,7 +130,7 @@ def p1(inputGrid, inputTarget):
             p1_ans.append(-1)
             i+=1
     p1_finalAns=dict(zip(inputTarget,p1_ans))
-    return p1_afinalAns
+    return p1_finalAns
 
 def solve(m,x,y,p1_x,p1_y):
     global p1_value
