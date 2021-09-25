@@ -45,7 +45,6 @@ def split_by_unique_groups(list_):
         idx = next_bad_idx
     return to_return
 def main(sentence):
-    global sentence
     global mark
     global origin_position
     global inputValue
