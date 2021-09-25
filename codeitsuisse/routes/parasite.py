@@ -112,7 +112,7 @@ def p1(inputGrid, inputTarget):
     #p1_ans[len(p1)]
     p1_ans=[]
     
-    parasite = locationParasite(grid)
+    parasite = locationParasite(inputGrid)
     x = parasite[0]
     y = parasite[1]
     #print(x)
@@ -120,7 +120,7 @@ def p1(inputGrid, inputTarget):
     i=0
     while i<len(p1):
         p1_value = 0
-        if solve(grid,y,x,int(p1[i][0]),int(p1[i][1])) == True:
+        if solve(grid,x,y,int(p1[i][0]),int(p1[i][1])) == True:
             #p1_ans[i] = p1_value
             p1_ans.append(p1_value)
             i+=1
