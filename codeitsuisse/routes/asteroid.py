@@ -1,95 +1,92 @@
-import json
 import logging
+import json
+
 from flask import request, jsonify
+
 from codeitsuisse import app
 
-global text 
+text = ""
 logger = logging.getLogger(__name__)
+
+
+
+
+
+def Convert(string):
+    list1=[]
+    list1[:0]=string
+    return list1
+
+
+def score_multiplicity(x):
+    if (x >= 10):
+        return x*2
+    if (x >= 7):
+        return int(x * 1.5)
+    return x
+
+def simplify_score(xdx):
+    global text
+    max_score = 0
+    temp_score = 0
+    temp_position = 0
+    max_position = 0
+    temp = [[text[0],1]]
+    current_char = text[0]
+    current_index = 0
+    
+    for i in range(len(text)):
+        if (i == 0):
+            continue
+        if (text[i] == current_char):
+            temp[current_index][1] = temp[current_index][1] + 1
+        else:
+            current_char = text[i]
+            current_index = current_index + 1
+            temp.append([current_char,1])
+
+    print(temp)
+    for i in range(len(temp)):
+        if (temp[i][1] == 2):
+            temp_position += temp[i][1]
+            max_score += 1
+            continue
+        temp_score += score_multiplicity(temp[i][1])
+
+        j = 1
+        while( (i-j) >= 0 and (i+j) < len(temp)):
+            if (temp[i-j][0] != temp[i+j][0]):
+                break
+            else:
+                temp_score += score_multiplicity(temp[i-j][1] + temp[i+j][1])
+            j += 1
+            
+        if (temp_score > max_score):
+            max_score = temp_score
+            max_position = temp_position
+            if (temp[i][1] != 1):
+                max_position += 1
+        temp_score = 0
+        temp_position += temp[i][1]
+
+    return {"input": xdx, "score": max_score,"origin": max_position}
+        
 @app.route('/asteroid', methods=['POST'])
-def evaluate_Asteriod():
-    global sentence
-    global mark
-    global origin_position
-    global inputValue
-    global data
+def evaluate_asteroid():
     global text
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
     #inputValue = data.get("input")
-    result=[]
-    for test_case in data:
-        result.append(main(test_case))
-    #logging.info("input :{}".format(text))
-    #logging.info("score :{}".format(mark))
-    #logging.info("origin :{}".format(origin_position))
+    result = []
+    
+    l = 0
+    for test_cases in data['test_cases']:
+        text = Convert(str(test_cases))
+        result.append(simplify_score(test_cases))
+        logging.info("input :{}".format(test_cases))
+        logging.info("score :{}".format(result[l]["score"]))
+        logging.info("origin :{}".format(result[l]["origin"]))
+        l += 1
     return json.dumps(result)
 
-mark=0
-#split the sentence
-def split_by_unique_groups(list_):
-    to_return = []
 
-    idx = 0
-    while idx != len(list_):
-        curr = list_[idx]
-
-        next_bad_idx = None
-        for x in range(idx+1, len(list_)):
-            if list_[x] != curr:
-                next_bad_idx = x
-                break
-
-        sub_str = list_[idx:next_bad_idx] # [x:None] returns x to len(s)
-        to_return.append(sub_str)
-
-        if next_bad_idx is None:
-            break
-        idx = next_bad_idx
-    return to_return
-def main(sentence):
-    global mark
-    global origin_position
-    global inputValue
-    global data
-    global text
-    sentence_split = split_by_unique_groups(sentence)
-
-
-    #test
-    while len(sentence_split)>1:
-        origin=int(len(sentence_split)/2)
-        global index
-        index=len(sentence_split[origin])
-        if sentence_split[origin-1][0]==sentence_split[origin+1][0]:
-            if (len(sentence_split[origin-1])+len(sentence_split[origin+1]))>=10:
-                mark+=2*(len(sentence_split[origin-1])+len(sentence_split[origin+1]))
-
-            elif (len(sentence_split[origin-1])+len(sentence_split[origin+1]))>=7:
-                mark+=1.5*(len(sentence_split[origin-1])+len(sentence_split[origin+1]))
-
-            else:
-                mark+=(len(sentence_split[origin-1])+len(sentence_split[origin+1]))
-
-            sentence_split.pop(origin-1)
-            sentence_split.pop(origin)
-
-        else:
-            break
-    if index>=10:
-        mark+=2*index
-    elif index>=7:
-        mark+=1.5*index
-    else:
-        mark+=index
-
-    sentence_copy=split_by_unique_groups(sentence)
-
-    origin_position=int(len(sentence_copy)/2)
-    numberOfOrigin=0
-    i=0
-    while i < origin_position:
-        numberOfOrigin+=len(sentence_copy[i])
-        i+=1
-    numberOfOrigin+=int(len(sentence_copy)/2)-1
-
-    return {"input" : sentence,"score" : mark, "origin" : origin_position}
