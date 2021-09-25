@@ -3,6 +3,7 @@ import logging
 from flask import request, jsonify
 from codeitsuisse import app
 
+global text 
 logger = logging.getLogger(__name__)
 @app.route('/asteroid', methods=['POST'])
 def evaluate_Asteriod():
@@ -11,6 +12,7 @@ def evaluate_Asteriod():
     global origin_position
     global inputValue
     global data
+    global text
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
     #inputValue = data.get("input")
@@ -49,6 +51,7 @@ def main(sentence):
     global origin_position
     global inputValue
     global data
+    global text
     sentence_split = split_by_unique_groups(sentence)
 
 
