@@ -15,7 +15,7 @@ def evaluate_Asteriod():
     logging.info("data sent for evaluation {}".format(data))
     #inputValue = data.get("input")
     for test_case in data:
-        text=Convert(test_case)
+        text=test_case
     main(text)
     logging.info("input :{}".format(sentence))
     logging.info("score :{}".format(mark))
