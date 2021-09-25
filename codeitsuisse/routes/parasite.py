@@ -24,7 +24,7 @@ def evaluate_parasite():
     for test_case in data:
         result.append(main(test_case["room"],test_case["grid"],test_case["interestedIndividuals"]))
        
-    return json.dumps(result)
+    return jsonify(result)
   
 
 def target(inputTarget):
