@@ -4,7 +4,7 @@ from flask import request, jsonify
 from codeitsuisse import app
 
 logger = logging.getLogger(__name__)
-@app.route('/Asteriod', methods=['POST'])
+@app.route('/asteroid', methods=['POST'])
 def evaluate_Asteriod():
     global sentence
     global mark
