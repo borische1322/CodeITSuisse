@@ -6,9 +6,11 @@ from flask import request, jsonify
 from codeitsuisse import app
 
 global p1ANS 
+global test
 p2Ans=0
 again1=1
 again2=1
+test=0
 
 logger = logging.getLogger(__name__)
 @app.route('/parasite', methods=['POST'])
